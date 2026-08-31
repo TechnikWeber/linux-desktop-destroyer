@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Desktop Destroyer
+GenericName=Desktop demolition toy
+Comment=Smash, burn and saw your desktop to pieces
+Comment[de]=Zerlege deinen Desktop mit Hammer, Flammenwerfer und Termiten
+Exec=desktop-destroyer
+Icon=applications-games
+Terminal=false
+Categories=Game;ActionGame;
+Keywords=game;fun;destroy;smash;
+StartupNotify=false

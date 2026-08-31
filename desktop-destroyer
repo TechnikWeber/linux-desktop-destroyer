@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Launcher: prefers a local virtualenv, falls back to the system PySide6.
+set -euo pipefail
+
+here="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+
+if [[ -x "$here/.venv/bin/python" ]]; then
+    exec "$here/.venv/bin/python" -m desktop_destroyer "$@"
+fi
+
+if ! python3 -c "import PySide6" 2>/dev/null; then
+    cat >&2 <<'MSG'
+desktop-destroyer: PySide6 is missing.
+
+  Fedora / RHEL   sudo dnf install python3-pyside6
+  Debian/Ubuntu   sudo apt install python3-pyside6
+  Arch            sudo pacman -S pyside6
+  anywhere        ./install.sh        (sets up a local .venv)
+MSG
+    exit 1
+fi
+
+cd "$here"
+exec python3 -m desktop_destroyer "$@"
