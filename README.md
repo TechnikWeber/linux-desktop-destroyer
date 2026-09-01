@@ -16,31 +16,30 @@ alles wieder.
 Genau deshalb läuft es identisch unter **X11 und Wayland**: es wird nichts in
 fremde Fenster gezeichnet und nichts am Compositor vorbei manipuliert.
 
-## Installation
+Unter Linux gibt es kein `.exe` — das Klick-Äquivalent ist ein `.desktop`-Eintrag
+im Anwendungsmenü. Den legt `./install.sh` an.
 
-Einzige Abhängigkeit ist PySide6 (Qt 6).
+## Starten
 
 ```bash
 git clone https://github.com/TechnikWeber/desktop-destroyer.git
 cd desktop-destroyer
-./desktop-destroyer
+./install.sh
 ```
 
-Fehlt PySide6, meldet der Starter das mit dem passenden Paketnamen:
+Danach steht **Desktop Destroyer** im Anwendungsmenü — anklicken, fertig.
+Im Terminal geht auch einfach `desktop-destroyer`.
 
-| Distribution  | Paket                                |
-|---------------|--------------------------------------|
-| Fedora / RHEL | `sudo dnf install python3-pyside6`   |
-| Debian/Ubuntu | `sudo apt install python3-pyside6`   |
-| Arch          | `sudo pacman -S pyside6`             |
-| sonst         | `./install.sh` — legt ein lokales `.venv` an |
+`./install.sh` legt nur einen Menüeintrag, ein Icon und einen Befehl in
+`~/.local/bin` an; `./uninstall.sh` entfernt das wieder. Fehlt PySide6 (Qt 6),
+fragt das Skript, ob es ein lokales `.venv` anlegen soll — sauberer ist das
+Distributionspaket:
 
-Optional ins Anwendungsmenü:
-
-```bash
-install -Dm644 desktop-destroyer.desktop ~/.local/share/applications/desktop-destroyer.desktop
-ln -sf "$PWD/desktop-destroyer" ~/.local/bin/desktop-destroyer
-```
+| Distribution  | Paket                              |
+|---------------|------------------------------------|
+| Fedora / RHEL | `sudo dnf install python3-pyside6` |
+| Debian/Ubuntu | `sudo apt install python3-pyside6` |
+| Arch          | `sudo pacman -S pyside6`           |
 
 ## Steuerung
 
