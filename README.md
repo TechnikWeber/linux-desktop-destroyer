@@ -23,8 +23,8 @@ application menu, and `./install.sh` creates it.
 ## Getting started
 
 ```bash
-git clone https://github.com/TechnikWeber/desktop-destroyer.git
-cd desktop-destroyer
+git clone https://github.com/TechnikWeber/linux-desktop-destroyer.git
+cd linux-desktop-destroyer
 ./install.sh
 ```
 
