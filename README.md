@@ -1,25 +1,26 @@
+**English** · [Deutsch](README.de.md)
+
 # Desktop Destroyer
 
-Der Klassiker aus den 90ern — jetzt für Linux. Hammer, Kettensäge, Maschinen­gewehr,
-Flammenwerfer, Farbwerfer, Phaser, Stempel, Termiten und Waschpistole, losgelassen
-auf deinen echten Desktop.
+The 90s classic, now for Linux. Hammer, chain-saw, machine gun, flame-thrower,
+colour-thrower, phaser, stamp, termites and washing gun, let loose on your real
+desktop.
 
 ![Desktop Destroyer](docs/screenshot.png)
 
-## Wie es funktioniert
+## How it works
 
-Beim Start wird ein Standbild deines Desktops aufgenommen und pixelgenau als
-Vollbildfenster wieder angezeigt. Was du danach zerlegst, ist dieses Bild — deine
-Fenster, Dateien und Sitzung bleiben unangetastet. `Esc` beendet, `R` repariert
-alles wieder.
+On launch a still of your desktop is captured and shown back pixel-for-pixel as a
+fullscreen window. What you tear apart is that image — your windows, your files and
+your session are never touched. `Esc` quits, `R` repairs everything.
 
-Genau deshalb läuft es identisch unter **X11 und Wayland**: es wird nichts in
-fremde Fenster gezeichnet und nichts am Compositor vorbei manipuliert.
+That is exactly why it behaves identically on **X11 and Wayland**: nothing is drawn
+into other applications' windows and nothing is smuggled past the compositor.
 
-Unter Linux gibt es kein `.exe` — das Klick-Äquivalent ist ein `.desktop`-Eintrag
-im Anwendungsmenü. Den legt `./install.sh` an.
+Linux has no `.exe` — the click-to-start equivalent is a `.desktop` entry in the
+application menu, and `./install.sh` creates it.
 
-## Starten
+## Getting started
 
 ```bash
 git clone https://github.com/TechnikWeber/desktop-destroyer.git
@@ -27,81 +28,81 @@ cd desktop-destroyer
 ./install.sh
 ```
 
-Danach steht **Desktop Destroyer** im Anwendungsmenü — anklicken, fertig.
-Im Terminal geht auch einfach `desktop-destroyer`.
+Then look for **Desktop Destroyer** in your application menu and click it. From a
+terminal, `desktop-destroyer` works from anywhere.
 
-`./install.sh` legt nur einen Menüeintrag, ein Icon und einen Befehl in
-`~/.local/bin` an; `./uninstall.sh` entfernt das wieder. Fehlt PySide6 (Qt 6),
-fragt das Skript, ob es ein lokales `.venv` anlegen soll — sauberer ist das
-Distributionspaket:
+`install.sh` adds exactly three things: a menu entry, an icon and a command in
+`~/.local/bin`. `./uninstall.sh` takes them away again. If PySide6 (Qt 6) is
+missing, the script offers to build a local `.venv` — your distribution's package
+is the tidier option:
 
-| Distribution  | Paket                              |
+| Distribution  | Package                            |
 |---------------|------------------------------------|
 | Fedora / RHEL | `sudo dnf install python3-pyside6` |
 | Debian/Ubuntu | `sudo apt install python3-pyside6` |
 | Arch          | `sudo pacman -S pyside6`           |
 
-## Steuerung
+## Controls
 
-| Taste            | Wirkung                                        |
-|------------------|------------------------------------------------|
-| `1` … `9`        | Waffe wählen                                   |
-| Linke Maustaste  | zuschlagen, halten für Dauerfeuer              |
-| Mausrad          | nächste / vorherige Waffe                      |
-| `Tab` / rechte Maustaste | Werkzeugkasten ein- und ausblenden      |
-| `R`              | Desktop komplett reparieren                    |
-| `S`              | Trümmerfeld als PNG speichern (`~/Bilder`)     |
-| `M`              | Ton an / aus                                   |
-| `Esc` oder `Q`   | Beenden                                        |
+| Key                    | Effect                                          |
+|------------------------|-------------------------------------------------|
+| `1` … `9`              | Pick a weapon                                   |
+| Left mouse button      | Strike; hold for continuous fire                |
+| Mouse wheel            | Next / previous weapon                          |
+| `Tab` or right click   | Show or hide the toolbox                        |
+| `R`                    | Repair the whole desktop                        |
+| `S`                    | Save the wreckage as a PNG (`~/Pictures`)       |
+| `M`                    | Sound on / off                                  |
+| `Esc` or `Q`           | Quit                                            |
 
-Den Werkzeugkasten kannst du an seiner Titelleiste verschieben.
+Drag the toolbox around by its title bar.
 
-## Die neun Werkzeuge
+## The nine tools
 
-| # | Werkzeug        | Wirkung                                                        |
-|---|-----------------|----------------------------------------------------------------|
-| 1 | Hammer          | Ein Schlag pro Klick: Krater mit verästelten Rissen, Bildschirm wackelt |
-| 2 | Kettensäge      | Ziehen schneidet eine durchgehende, ausgefranste Kerbe; Sägemehl fliegt |
-| 3 | Maschinengewehr | Dauerfeuer mit Streuung, Einschusslöchern, Mündungsfeuer und Hülsen |
-| 4 | Flammenwerfer   | Verkohlt die Oberfläche schwarz, Blasen werfen, Rauch steigt auf |
-| 5 | Farbwerfer      | Spritzer in wechselnden Farben, die nach unten verlaufen        |
-| 6 | Phaser          | Brennt einen glühenden Schnitt quer über den Bildschirm         |
-| 7 | Stempel         | Drückt „KAPUTT", „VOID", „REJECTED" … schräg und krisselig auf  |
-| 8 | Termiten        | Setzt Termiten aus, die umherlaufen und Fraßgänge nagen         |
-| 9 | Waschpistole    | Das Rückgängig-Werkzeug: wäscht den Desktop wieder sauber       |
+| # | Tool           | What it does                                                       |
+|---|----------------|--------------------------------------------------------------------|
+| 1 | Hammer         | One dent per click: a crater with branching fractures, screen shakes |
+| 2 | Chain-saw      | Dragging cuts one continuous ragged kerf; sawdust flies             |
+| 3 | Machine gun    | Continuous fire with spread, bullet holes, muzzle flash and casings |
+| 4 | Flame-thrower  | Chars the surface black, paint blisters, smoke drifts up            |
+| 5 | Colour-thrower | Splatter in shifting colours, with paint running down               |
+| 6 | Phaser         | Burns a glowing slit clean across the screen                        |
+| 7 | Stamp          | Presses "DESTROYED", "VOID", "REJECTED" … on, askew and grainy      |
+| 8 | Termites       | Releases termites that crawl about and chew tunnels                 |
+| 9 | Washing gun    | The undo tool: washes the desktop clean again                       |
 
-## Kommandozeile
+## Command line
 
 ```
-desktop-destroyer [Optionen]
+desktop-destroyer [options]
 
-  -w, --windowed       im normalen Fenster statt im Vollbild (gut zum Testen)
-  -i, --image DATEI    ein Bild statt des echten Desktops zerlegen
-  -m, --mute           stumm starten
-  -d, --delay SEKUNDEN vor der Aufnahme warten
-      --primary-only   nur den Hauptbildschirm übernehmen
-      --backend        erkanntes Screenshot-Verfahren ausgeben und beenden
+  -w, --windowed       run in a normal window instead of fullscreen (handy for testing)
+  -i, --image FILE     destroy an image file instead of the live desktop
+  -m, --mute           start muted
+  -d, --delay SECONDS  wait before grabbing the desktop
+      --primary-only   only take over the primary screen
+      --backend        print the detected screenshot backend and exit
 ```
 
-## Screenshot-Verfahren
+## Screenshot backends
 
-Das Standbild wird über die erste Methode geholt, die auf dem System funktioniert:
+The still is grabbed with the first method that works on the system:
 
-* **X11** — Qt greift die Root-Fenster direkt ab; sonst `maim`, `scrot`, `import`
+* **X11** — Qt grabs the root windows directly; otherwise `maim`, `scrot`, `import`
 * **Wayland** — `grim` (wlroots: Sway, Hyprland, river, Wayfire), `spectacle` (KDE),
   `org.gnome.Shell.Screenshot`, `gnome-screenshot`
-* **überall** — `org.freedesktop.portal.Screenshot` als letzter Ausweg
-  (kann je nach Compositor einmalig nachfragen)
+* **anywhere** — `org.freedesktop.portal.Screenshot` as the last resort
+  (some compositors ask once before allowing it)
 
-`desktop-destroyer --backend` zeigt, was gewählt wurde. Klappt nichts davon,
-startet das Spiel trotzdem — dann eben mit einem gemalten Ersatz-Desktop.
+`desktop-destroyer --backend` shows which one was picked. If none of them work the
+game still starts — with a painted stand-in desktop.
 
-## Warum keine Grafik- und Audiodateien?
+## Why no image or audio files?
 
-Es gibt keine. Sämtliche Werkzeug-Icons sind Vektor­zeichnungen in
-`icons.py`, alle Geräusche werden beim ersten Start in `sfx.py` synthetisiert und
-unter `~/.cache/desktop-destroyer/` abgelegt. Ein `git clone` genügt.
+There are none. Every tool icon is vector art in `icons.py`, and all the sounds are
+synthesised on first launch in `sfx.py` and cached under `~/.cache/desktop-destroyer/`.
+A `git clone` is all it takes.
 
-## Lizenz
+## Licence
 
-MIT — siehe [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE).
