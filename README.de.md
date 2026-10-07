@@ -106,4 +106,4 @@ alle Geräusche werden beim ersten Start in `sfx.py` synthetisiert und unter
 
 ## Lizenz
 
-MIT — siehe [LICENSE](LICENSE).
+[MIT](LICENSE).

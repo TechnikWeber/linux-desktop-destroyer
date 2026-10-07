@@ -103,6 +103,6 @@ There are none. Every tool icon is vector art in `icons.py`, and all the sounds 
 synthesised on first launch in `sfx.py` and cached under `~/.cache/desktop-destroyer/`.
 A `git clone` is all it takes.
 
-## Licence
+## License
 
-MIT — see [LICENSE](LICENSE).
+[MIT](LICENSE).
