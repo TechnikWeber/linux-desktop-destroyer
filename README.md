@@ -1,5 +1,3 @@
-**English** · [Deutsch](README.de.md)
-
 # Desktop Destroyer
 
 The 90s classic, now for Linux. Hammer, chain-saw, machine gun, flame-thrower,
