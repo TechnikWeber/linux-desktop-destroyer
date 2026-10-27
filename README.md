@@ -1,5 +1,11 @@
 # Desktop Destroyer
 
+<p>
+  <img alt="Status: stable" src="https://img.shields.io/badge/status-stable-brightgreen">
+  <img alt="Platform: Linux · X11 | Wayland" src="https://img.shields.io/badge/platform-Linux%20%C2%B7%20X11%20%7C%20Wayland-blue">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-green"></a>
+</p>
+
 The 90s classic, now for Linux. Hammer, chain-saw, machine gun, flame-thrower,
 colour-thrower, phaser, stamp, termites and washing gun, let loose on your real
 desktop.
