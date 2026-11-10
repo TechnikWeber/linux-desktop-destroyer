@@ -40,11 +40,14 @@ terminal, `desktop-destroyer` works from anywhere.
 missing, the script offers to build a local `.venv` — your distribution's package
 is the tidier option:
 
-| Distribution  | Package                            |
-|---------------|------------------------------------|
+| Distribution | Package |
+|---|---|
 | Fedora / RHEL | `sudo dnf install python3-pyside6` |
-| Debian/Ubuntu | `sudo apt install python3-pyside6` |
-| Arch          | `sudo pacman -S pyside6`           |
+| Debian 13+, Ubuntu 26.04+ | `sudo apt install python3-pyside6.qtwidgets python3-pyside6.qtmultimedia python3-pyside6.qtdbus` |
+| Arch | `sudo pacman -S pyside6` |
+
+Ubuntu 24.04 and older (and Linux Mint 22 based on it) have no PySide6 package; take
+the `.venv` that `install.sh` offers. It needs `sudo apt install python3-venv` first.
 
 ## Controls
 

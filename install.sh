@@ -11,13 +11,15 @@ icons="${XDG_DATA_HOME:-$HOME/.local/share}/icons/hicolor"
 bin="$HOME/.local/bin"
 
 # ---- 1. dependency -------------------------------------------------------
-if python3 -c "import PySide6" 2>/dev/null; then
+if python3 -c "import PySide6.QtWidgets" 2>/dev/null; then
     echo "PySide6: already available system-wide."
 else
     echo "PySide6 is missing. Your distribution's package is the lighter option:"
-    echo "  Fedora/RHEL  sudo dnf install python3-pyside6"
-    echo "  Debian/Ubuntu sudo apt install python3-pyside6"
-    echo "  Arch          sudo pacman -S pyside6"
+    echo "  Fedora/RHEL               sudo dnf install python3-pyside6"
+    echo "  Debian 13+, Ubuntu 26.04+ sudo apt install python3-pyside6.qtwidgets python3-pyside6.qtmultimedia python3-pyside6.qtdbus"
+    echo "  Arch                      sudo pacman -S pyside6"
+    echo "  Ubuntu 24.04 and older have no package: use the local copy below"
+    echo "  (needs: sudo apt install python3-venv)."
     echo
     read -r -p "Install a local copy into $here/.venv instead? [y/N] " reply
     case "$reply" in
