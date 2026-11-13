@@ -65,7 +65,9 @@ while [ ${#queue[@]} -gt 0 ]; do
     done < <(needed "$file")
 done
 rm -rf addons
-"$py" -c 'from PySide6.QtMultimedia import QSoundEffect' || { echo "QtMultimedia does not load" >&2; exit 1; }
+# only check the files here: the build host may lack libEGL/libpulse; the
+# real import runs in the --selftest on Fedora afterwards
+[ -e "$site/Qt/lib/libQt6Multimedia.so.6" ] || { echo "QtMultimedia library missing" >&2; exit 1; }
 
 # ---- 3. prune what this app never loads -----------------------------------
 (
