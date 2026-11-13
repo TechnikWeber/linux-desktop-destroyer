@@ -42,7 +42,7 @@ for size in 256 128 64 48; do
 done
 
 # the launcher is not on PATH from the menu's point of view, so bake in the path
-sed "s|^Exec=.*|Exec=$here/desktop-destroyer|" desktop-destroyer.desktop \
+sed "s|^Exec=.*|Exec=$here/desktop-destroyer|" share/desktop-destroyer.desktop \
     > "$apps/desktop-destroyer.desktop"
 chmod 644 "$apps/desktop-destroyer.desktop"
 ln -sf "$here/desktop-destroyer" "$bin/desktop-destroyer"

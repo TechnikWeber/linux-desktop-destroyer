@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 import time
 
@@ -92,16 +93,61 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
                         help="only take over the primary screen")
     parser.add_argument("--backend", action="store_true",
                         help="print the detected capture backend and exit")
+    parser.add_argument("--selftest", action="store_true", help=argparse.SUPPRESS)
     return parser.parse_args(argv)
+
+
+def selftest(app: QApplication) -> int:
+    """Build one window on a stand-in desktop, check Qt Multimedia, quit.
+
+    Used by CI on the AppImage and the RPM: a module pruned too eagerly or a
+    missing Qt plugin shows up here instead of on someone's desktop.
+    """
+    from PySide6.QtCore import QTimer
+
+    problems = []
+    try:
+        from PySide6.QtMultimedia import QSoundEffect  # noqa: F401
+    except ImportError as exc:
+        problems.append(f"QtMultimedia missing: {exc}")
+    try:
+        from PySide6.QtDBus import QDBusConnection  # noqa: F401
+    except ImportError as exc:
+        problems.append(f"QtDBus missing: {exc}")
+
+    # never a real screenshot here: the stand-in desktop is enough
+    screen = app.primaryScreen()
+    shot = capture._fallback_wallpaper(screen.geometry().size())
+    session = Session(muted=False)
+    window = DestroyerWindow(session, shot, screen, windowed=True)
+    session.windows.append(window)
+    window.show()
+
+    def report() -> None:
+        ok = not problems
+        sound = "ready" if session.sfx._ready else "no audio output"
+        print(f"selftest {'ok' if ok else 'FAILED'}: desktop-destroyer {__version__}, "
+              f"Qt {app.platformName()}, window built, sound {sound}"
+              + "".join(f"\n  {p}" for p in problems))
+        session.quit()
+        app.exit(0 if ok else 1)
+
+    QTimer.singleShot(500, report)
+    return app.exec()
 
 
 def main(argv: list[str] | None = None) -> int:
     options = parse_args(sys.argv[1:] if argv is None else argv)
+    if options.selftest:
+        os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
     QApplication.setApplicationName("Desktop Destroyer")
     QApplication.setApplicationVersion(__version__)
     QGuiApplication.setDesktopFileName("desktop-destroyer")
-    app = QApplication(sys.argv)
+    app = QApplication(sys.argv[:1])
+
+    if options.selftest:
+        return selftest(app)
 
     if options.backend:
         image, backend = capture.grab_virtual_desktop()

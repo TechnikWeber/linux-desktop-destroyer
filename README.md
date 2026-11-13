@@ -2,6 +2,8 @@
 
 <p>
   <img alt="Status: stable" src="https://img.shields.io/badge/status-stable-brightgreen">
+  <a href="https://github.com/TechnikWeber/linux-desktop-destroyer/releases/latest"><img alt="Download" src="https://img.shields.io/github/v/release/TechnikWeber/linux-desktop-destroyer?label=download&color=2ea44f"></a>
+  <a href="https://github.com/TechnikWeber/linux-desktop-destroyer/actions/workflows/ci.yml"><img alt="Build" src="https://img.shields.io/github/actions/workflow/status/TechnikWeber/linux-desktop-destroyer/ci.yml?branch=main&label=build"></a>
   <img alt="Platform: Linux · X11 | Wayland" src="https://img.shields.io/badge/platform-Linux%20%C2%B7%20X11%20%7C%20Wayland-blue">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-green"></a>
 </p>
@@ -21,10 +23,21 @@ your session are never touched. `Esc` quits, `R` repairs everything.
 That is exactly why it behaves identically on **X11 and Wayland**: nothing is drawn
 into other applications' windows and nothing is smuggled past the compositor.
 
-Linux has no `.exe` — the click-to-start equivalent is a `.desktop` entry in the
-application menu, and `./install.sh` creates it.
+## Download
 
-## Getting started
+From the [latest release](https://github.com/TechnikWeber/linux-desktop-destroyer/releases/latest):
+
+| File | For |
+|---|---|
+| `desktop-destroyer-*-x86_64.AppImage` | Any distribution: download, make executable, run. Or open it with [Gear Lever](https://flathub.org/apps/it.mijorus.gearlever), which puts it into the application menu and also updates it. Brings its own Qt, nothing else to install. |
+| `desktop-destroyer-*.noarch.rpm` | Fedora: `sudo dnf install ./desktop-destroyer-*.noarch.rpm`. Uses the system Qt; `dnf remove desktop-destroyer` takes it away again. |
+
+Then look for **Desktop Destroyer** in your application menu and click it.
+
+To grab the desktop on Wayland it uses `spectacle` (KDE), `grim` (wlroots),
+GNOME Shell or the XDG screenshot portal, whichever is there.
+
+### From the source
 
 ```bash
 git clone https://github.com/TechnikWeber/linux-desktop-destroyer.git
@@ -32,13 +45,11 @@ cd linux-desktop-destroyer
 ./install.sh
 ```
 
-Then look for **Desktop Destroyer** in your application menu and click it. From a
-terminal, `desktop-destroyer` works from anywhere.
-
-`install.sh` adds exactly three things: a menu entry, an icon and a command in
-`~/.local/bin`. `./uninstall.sh` takes them away again. If PySide6 (Qt 6) is
-missing, the script offers to build a local `.venv` — your distribution's package
-is the tidier option:
+`install.sh` adds exactly three things: a menu entry, an icon and a
+`desktop-destroyer` command in `~/.local/bin`, all pointing into the cloned
+folder, so keep it. `./uninstall.sh` takes them away again. If PySide6 (Qt 6)
+is missing, the script offers to build a local `.venv` — your distribution's
+package is the tidier option:
 
 | Distribution | Package |
 |---|---|
@@ -47,7 +58,8 @@ is the tidier option:
 | Arch | `sudo pacman -S pyside6` |
 
 Ubuntu 24.04 and older (and Linux Mint 22 based on it) have no PySide6 package; take
-the `.venv` that `install.sh` offers. It needs `sudo apt install python3-venv` first.
+the `.venv` that `install.sh` offers (it needs `sudo apt install python3-venv` first),
+or simply the AppImage.
 
 ## Controls
 
